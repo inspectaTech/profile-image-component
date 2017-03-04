@@ -46,8 +46,8 @@ function masterImage(mstrObj){
     break;
 
     case "profile_edit":
-      var default_width = 140;
-      var default_height = 140;
+      var default_width = 200;
+      var default_height = 200;
     break;
 
     case "image":
@@ -259,26 +259,46 @@ function masterImage(mstrObj){
       {
       "label":"XS",
       "contents":"XS",
-      "title":"extra small",
+      "title":"for extra small images",
+      "size":"100",
+      "scale":"200%",
+      "zoom":"5X",
+      "limit":"150"
       },{
       "label":"S",
       "contents":"S",
-      "title":"small",
+      "title":"for small images",
+      "size":"640",
+      "scale":"100%",
+      "zoom":"4X",
+      "limit":"700"
       },
       {
       "label":"M",
       "contents":"M",
-      "title":"medium",
+      "title":"for medium images",
+      "size":"1280",
+      "scale":"50%",
+      "zoom":"3X",
+      "limit":"1330"
       },
       {
       "label":"L",
       "contents":"L",
-      "title":"large",
+      "title":"for large images",
+      "size":"2560",
+      "scale":"25%",
+      "zoom":"2X",
+      "limit":"2610"
       },
       {
       "label":"XL",
       "contents":"XL",
-      "title":"extra large",
+      "title":"for extra large images",
+      "size":"5120",
+      "scale":"12.5%",
+      "zoom":"1X",
+      "limit":"5170"
       }
 
       ];//end size_ary
@@ -302,42 +322,6 @@ function masterImage(mstrObj){
       edit_box.className = "edit_box" + iUN + " edit_box test_orange";
       //collapsible set
 
-      var ctrl_box = document.createElement("div");
-      ctrl_box.id = "ctrl_box" + iUN;
-      ctrl_box.className = "ctrl_box" + iUN + " ctrl_box edit_sectionA ";
-
-      var test_nbr = 3;
-
-      for(var x = 0; x < ctrl_ary.length ; x++){
-
-        var ec_Nm = "edit_ctrl_btn" + x;
-        var edit_ctrl_btn = document.createElement("button");
-        edit_ctrl_btn.id = "edit_ctrl_btn" + iUN + "_" + x;
-        edit_ctrl_btn.className = "edit_ctrl_btn" + iUN + "_"  + x + " edit_ctrl_btn" + x + " edit_ctrl_btn ";
-        edit_ctrl_btn.setAttribute("href","#");
-        edit_ctrl_btn.dataset.nbr = x;
-        edit_ctrl_btn.dataset.contents = ctrl_ary[x].contents;
-        edit_ctrl_btn.title = ctrl_ary[x].title;
-        //edit_ctrl_btn.innerHTML = "<h5>" + ctrl_ary[x].label + "</h5>";
-        obj_els[ec_Nm] = edit_ctrl_btn;
-
-        //helps set up the correct call inside the event listener
-        obj_els["contents" + x] = ctrl_ary[x].contents;
-
-
-        obj_els[ec_Nm].addEventListener("click",function(){
-          //i used this.dataset so it doesn't pass the updated x of the for loop
-          //and everything ending up being on click of the last index nbr passed
-          var sNbr = this.dataset.nbr;
-          var my_contents = this.dataset.contents
-          run_contents(my_contents);
-        })//end c_Nm
-
-       ctrl_box.appendChild(edit_ctrl_btn);
-
-      }//end for
-
-
 
       //make the other Stuff
 
@@ -346,21 +330,13 @@ function masterImage(mstrObj){
       edit_sectionB.id = "edit_sectionB" + iUN;
       edit_sectionB.className = "edit_sectionB" + iUN + " edit_sectionB test_blue";
 
-          //edit_resize_box
-          var edit_resize_box = document.createElement("div");
-          edit_resize_box.id = "edit_resize_box" + iUN;
-          edit_resize_box.className = "edit_resize_box" + iUN + " edit_resize_box ";
-
           //canvas_cont
           var canvas_cont = document.createElement("div");
           canvas_cont.id = "canvas_cont" + iUN;
           canvas_cont.className = "canvas_cont" + iUN + " canvas_cont test_purple";
 obj_els["edit_home_id"] = canvas_cont.id;
 
-          //edit_cmd_label
-          var edit_cmd_label = document.createElement("div");
-          edit_cmd_label.id = "edit_cmd_label" + iUN;
-          edit_cmd_label.className = "edit_cmd_label" + iUN + " edit_cmd_label test_orange";
+
 
           //edit_slider_box
           var edit_slider_box = document.createElement("div");
@@ -381,23 +357,75 @@ obj_els["edit_home_id"] = canvas_cont.id;
           edit_slider_box.appendChild(edit_lock_box);
           edit_slider_box.appendChild(edit_slider_cont);
 
-
-      edit_sectionB.appendChild(edit_resize_box);
       edit_sectionB.appendChild(canvas_cont);
-      edit_sectionB.appendChild(edit_cmd_label);
 
-
+                              //edit_resize_box
+          var edit_resize_box = document.createElement("div");
+          edit_resize_box.id = "edit_resize_box" + iUN;
+          edit_resize_box.className = "edit_resize_box" + iUN + " edit_resize_box ";
 
 
       //$(".ctrl_cont").addClass("hibernate");
       //$(".col_label").removeClass("hide");
-      edit_box.appendChild(ctrl_box);
+      edit_box.appendChild(edit_resize_box);
       edit_box.appendChild(edit_sectionB);
       edit_box.appendChild(edit_slider_box);
+
+                    //edit_cmd_label
+          var edit_cmd_label = document.createElement("div");
+          edit_cmd_label.id = "edit_cmd_label" + iUN;
+          edit_cmd_label.className = "edit_cmd_label" + iUN + " edit_cmd_label test_orange";
+
+
+          var ctrl_box = document.createElement("div");
+          ctrl_box.id = "ctrl_box" + iUN;
+          ctrl_box.className = "ctrl_box" + iUN + " ctrl_box edit_sectionA ";
+
+
+
+      edit_box.appendChild(ctrl_box);
+      edit_box.appendChild(edit_cmd_label);
+
 
       bigDaddy.appendChild(edit_box);
 
 
+
+
+      var test_nbr = 3;
+      //content for ctrl_box
+      for(var x = 0; x < ctrl_ary.length ; x++){
+
+        var ec_Nm = "edit_ctrl_btn" + x;
+        var edit_ctrl_btn = document.createElement("button");
+        edit_ctrl_btn.id = "edit_ctrl_btn" + iUN + "_" + x;
+        edit_ctrl_btn.className = "edit_ctrl_btn" + iUN + "_"  + x + " edit_ctrl_btn" + x + " edit_ctrl_btn ";
+        edit_ctrl_btn.setAttribute("href","#");
+        edit_ctrl_btn.dataset.nbr = x;
+        edit_ctrl_btn.dataset.contents = ctrl_ary[x].contents;
+        edit_ctrl_btn.title = ctrl_ary[x].title;
+        //edit_ctrl_btn.innerHTML = "<h5>" + ctrl_ary[x].label + "</h5>";
+        obj_els[ec_Nm] = edit_ctrl_btn;
+
+        //helps set up the correct call inside the event listener
+        obj_els["contents" + x] = ctrl_ary[x].contents;
+
+
+        obj_els[ec_Nm].addEventListener("click",function(e){
+          //i used this.dataset so it doesn't pass the updated x of the for loop
+          //and everything ending up being on click of the last index nbr passed
+          e.preventDefault();
+          var sNbr = this.dataset.nbr;
+          var my_contents = this.dataset.contents
+          run_contents(my_contents);
+        })//end c_Nm
+
+       ctrl_box.appendChild(edit_ctrl_btn);
+
+      }//end for
+
+
+      //content for edit_resize_box
        for(var y = 0; y < size_ary.length ; y++){
 
         var er_Nm = "edit_resize_btn" + y;
@@ -408,16 +436,17 @@ obj_els["edit_home_id"] = canvas_cont.id;
         edit_resize_btn.dataset.nbr = y;
          edit_resize_btn.dataset.contents = size_ary[y].contents;
         edit_resize_btn.title = size_ary[y].title;
-        edit_resize_btn.innerHTML = "<h6>" + size_ary[y].label + "</h6>";
+        edit_resize_btn.innerHTML = "<h6>" + size_ary[y].zoom + "</h6>";
         obj_els[er_Nm] = edit_resize_btn;
 
         //helps set up the correct call inside the event listener
         obj_els["contents" + y] = size_ary[y].contents;
 
 
-        obj_els[er_Nm].addEventListener("click",function(){
+        obj_els[er_Nm].addEventListener("click",function(e){
           //i used this.dataset so it doesn't pass the updated x of the for loop
           //and everything ending up being on click of the last index nbr passed
+          e.preventDefault();
           var sNbr = this.dataset.nbr;
           var my_contents = this.dataset.contents
           run_contents(my_contents);
@@ -470,11 +499,11 @@ obj_els["edit_home_id"] = canvas_cont.id;
         case "XS":
           reset_canvas();
 
-          img_w = 100;
+          img_w = size_ary[0].size;
           img_h = img_w;
           can_w = canvas_width;
           can_h = canvas_width;
-          slide_limit = 150;
+          slide_limit = size_ary[0].limit;
 
           control_panel();
           draw_me();
@@ -484,11 +513,11 @@ obj_els["edit_home_id"] = canvas_cont.id;
         case "S":
           reset_canvas();
 
-          img_w = 640;
+          img_w =  size_ary[1].size;
           img_h = img_w;
           can_w = canvas_width;
           can_h = canvas_width;
-          slide_limit = 700;
+          slide_limit = size_ary[1].limit;
 
           control_panel();
           draw_me();
@@ -497,11 +526,11 @@ obj_els["edit_home_id"] = canvas_cont.id;
         case "M":
           reset_canvas();
 
-          img_w = 1280;
+          img_w =  size_ary[2].size;
           img_h = img_w;
           can_w = canvas_width;
           can_h = canvas_width;
-          slide_limit = 1330;
+          slide_limit = size_ary[2].limit;
 
           control_panel();
           draw_me();
@@ -510,11 +539,11 @@ obj_els["edit_home_id"] = canvas_cont.id;
         case "L":
           reset_canvas();
 
-          img_w = 2560;
+          img_w =  size_ary[3].size;
           img_h = img_w;
           can_w = canvas_width;
           can_h = canvas_width;
-          slide_limit = 2610;
+          slide_limit = size_ary[3].limit;
           //canvas.width = canvas.width;
 
           control_panel();
@@ -525,11 +554,11 @@ obj_els["edit_home_id"] = canvas_cont.id;
         case "XL":
           reset_canvas();
 
-          img_w = 5120;
+          img_w =  size_ary[4].size;
           img_h = img_w;
           can_w = canvas_width;
           can_h = canvas_width;
-          slide_limit = 5170;
+          slide_limit = size_ary[4].limit;
           //canvas.width = canvas.width;
           control_panel();
           draw_me();

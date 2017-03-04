@@ -3,14 +3,14 @@
 
 /*END HTML SECTION */
 
-.edit_box{height:300px;padding:5px;position:relative;}
-.ctrl_box{float:right;height:230px;width:13%;margin:0 5px;}
-button.edit_ctrl_btn{border:1px solid #ddd;width:30px;height:30px;cursor:pointer;}
-.edit_sectionB{width:65%;float:right;height:210px;position:relative}
+.edit_box{padding:5px;position:relative;}
+.ctrl_box{height:30px;width:100%;margin:0 5px;}
+button.edit_ctrl_btn{border:1px solid #ddd;width:15%;height:30px;cursor:pointer;display:inline-block;margin-right:3px;}
+.edit_sectionB{width:85%;float:right;height:210px;position:relative;margin-top:5px;}
 .edit_resize_box{height:20px;margin-bottom:5px;padding-left:7px;}
-.edit_resize_btn{height:20px; width:25px;margin-right:3px; display:inline-block;border:1px solid #ccc;text-align:center;padding:0px;}
+.edit_resize_btn{height:20px; width:18%;margin-right:3px; display:inline-block;border:1px solid #ccc;text-align:center;padding:0px;}
 .edit_resize_btn h6{margin:0px;text-align:center;font-size:14px;}
-.canvas_cont{height:140px;width:140px;margin-bottom:5px;margin:0 auto 5px;}
+.canvas_cont{height:200px;width:200px;margin:0 auto 5px;}
 .edit_cmd_label{height:30px;margin:5px;}
 .edit_slider_box{height:50px;margin-bottom:5px;position:relative;clear:both;}
 .edit_lock_box{height:30px;width:15%;float:left;margin-top:10px;}
@@ -29,7 +29,7 @@ button.edit_ctrl_btn{border:1px solid #ddd;width:30px;height:30px;cursor:pointer
 .slider.slider-horizontal{width:70%;}
 .sli_ctrl_boxA{width:30%;}
 
-.sli_ctrl_contB{position:absolute; border:1px solid black;width:15%;text-align:center;top:-230px;height:220px;}
+.sli_ctrl_contB{position:absolute; border:1px solid black;width:15%;text-align:center;top:-210px;height:210px; left:-5px;}
 .slider.slider-vertical{height:160px;margin-top:15px;}
 .sli_ctrl_boxB{width:50px;margin:5px 0 0 -8px;}
 
